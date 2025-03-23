@@ -1,3 +1,50 @@
+# ========================================
+# 🧠 Python & Virtual Environment
+# ========================================
 venv/
+__pycache__/
+*.py[cod]
+*.so
+
+# ========================================
+# 🍏 macOS System Files
+# ========================================
 .DS_Store
-.DS_Store
+.AppleDouble
+.LSOverride
+
+# ========================================
+# 🔧 VSCode & IDEs
+# ========================================
+.vscode/
+.idea/
+*.swp
+
+# ========================================
+# 📦 Environment & Secrets
+# ========================================
+.env
+*.env
+
+# ========================================
+# 📁 Dossiers générés automatiquement
+# (structure de projet, fichiers de comparaison de version, exports, etc.)
+# ========================================
+tools/versions/
+tools/changes/
+s3_exports/
+user_exports/
+
+# ========================================
+# 🧪 Données temporaires & brutes
+# ========================================
+data/raw/
+data/processed/
+data/logs/
+data/audio/
+data/images/
+
+# ========================================
+# 📚 Notebooks personnels (facultatif)
+# ========================================
+best-practices/DataEngineering_Plan_FitnessAI.md
