@@ -73,17 +73,17 @@ def insert_user(age, gender, height, weight, diet_type, fitness_level, goals):
     """
     conn = duckdb.connect(DB_PATH)
 
-    # 🧱 Ensure all tables exist (in case DB is fresh)
+    # Ensure all tables exist (in case DB is fresh)
     with open("back_end/database/schema.sql", "r") as f:
         conn.execute(f.read())
 
-    # 🔄 Get or create reference IDs
+    # Get or create reference IDs
     gender_id = get_or_create_label_id(conn, "genders", gender)
     diet_type_id = get_or_create_label_id(conn, "diet_types", diet_type)
     fitness_level_id = get_or_create_label_id(conn, "fitness_levels", fitness_level)
     goal_ids = get_or_create_goal_ids(conn, goals)
 
-    # 🧍 Insert user
+    # Insert user
     conn.execute("""
         INSERT INTO users (age, gender_id, height, weight, diet_type_id, fitness_level_id)
         VALUES (?, ?, ?, ?, ?, ?)
@@ -91,7 +91,7 @@ def insert_user(age, gender, height, weight, diet_type, fitness_level, goals):
 
     user_id = conn.execute("SELECT last_insert_rowid()").fetchone()[0]
 
-    # 🎯 Link user to multiple goals
+    # Link user to multiple goals
     for goal_id in goal_ids:
         conn.execute("""
             INSERT OR IGNORE INTO user_goals (user_id, goal_id)
@@ -99,4 +99,4 @@ def insert_user(age, gender, height, weight, diet_type, fitness_level, goals):
         """, (user_id, goal_id))
 
     conn.close()
-    print(f"✅ User {user_id} inserted with {len(goal_ids)} goal(s)")
+    print(f"User {user_id} inserted with {len(goal_ids)} goal(s)")

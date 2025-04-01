@@ -105,7 +105,7 @@ class UserRepository:
         for goal_id in goal_ids:
             self.conn.execute("INSERT OR IGNORE INTO user_goals (user_id, goal_id) VALUES (?, ?)", (user_id, goal_id))
 
-        print(f"✅ User {user_id} inserted with {len(goal_ids)} goal(s)")
+        print(f"User {user_id} inserted with {len(goal_ids)} goal(s)")
 
     def get_user_progress(self, user_id: int):
         """

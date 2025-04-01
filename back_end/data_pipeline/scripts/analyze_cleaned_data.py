@@ -49,7 +49,7 @@ def plot_distributions(df: pd.DataFrame):
 def save_stats_summary(df: pd.DataFrame):
     stats = describe_numerical(df)
     stats.to_csv(STATS_OUTPUT_PATH)
-    print(f"📊 Descriptive statistics saved to: {STATS_OUTPUT_PATH}")
+    print(f"Descriptive statistics saved to: {STATS_OUTPUT_PATH}")
 
 def plot_correlation_matrix(df: pd.DataFrame, method="pearson"):
     plt.figure(figsize=(10, 6))
@@ -94,36 +94,36 @@ def nlp_analysis(df: pd.DataFrame):
         plt.close()
 
 def run():
-    print("📥 Loading cleaned dataset...")
+    print("Loading cleaned dataset...")
     df = load_cleaned_dataset()
-    print(f"📈 Dataset shape: {df.shape}")
+    print(f"Dataset shape: {df.shape}")
 
-    print("📊 Generating descriptive stats...")
+    print("Generating descriptive stats...")
     save_stats_summary(df)
 
-    print("📦 Category distributions...")
+    print("Category distributions...")
     for col, dist in analyze_unique_categories(df).items():
         print(f"\n— {col} —")
         for k, v in dist.items():
             print(f"{k}: {v}")
 
-    print("📸 Saving visualizations...")
+    print("Saving visualizations...")
     plot_distributions(df)
 
-    print("🔁 Correlation Analysis...")
+    print("Correlation Analysis...")
     plot_correlation_matrix(df, method="pearson")
     plot_correlation_matrix(df, method="spearman")
 
-    print("📊 Distributions by Fitness Goal...")
+    print("Distributions by Fitness Goal...")
     distribution_by_group(df, group_col="Fitness Goal")
 
-    print("📊 Distributions by Gender...")
+    print("Distributions by Gender...")
     distribution_by_group(df, group_col="Gender")
 
-    print("🧠 NLP Preparation...")
+    print("NLP Preparation...")
     nlp_analysis(df)
 
-    print("✅ Full analysis complete.")
+    print("Full analysis complete.")
 
 if __name__ == "__main__":
     run()

@@ -109,14 +109,14 @@ def clean_nutrition_dataset(df: pd.DataFrame) -> pd.DataFrame:
 
 def run():
     df = pd.read_csv(INPUT_PATH)
-    print(f"📥 Loaded raw dataset: {df.shape}")
+    print(f"Loaded raw dataset: {df.shape}")
 
     cleaned = clean_nutrition_dataset(df)
-    print(f"🧼 Cleaned dataset: {cleaned.shape}")
+    print(f"Cleaned dataset: {cleaned.shape}")
 
     os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)
     cleaned.to_csv(OUTPUT_PATH, index=False)
-    print(f"✅ Cleaned dataset saved to: {OUTPUT_PATH}")
+    print(f"Cleaned dataset saved to: {OUTPUT_PATH}")
 
 
 if __name__ == "__main__":

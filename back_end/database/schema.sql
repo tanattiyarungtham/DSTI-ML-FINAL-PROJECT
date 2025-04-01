@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS goals (
 -- Main Users Table (normalized version)
 
 CREATE TABLE IF NOT EXISTS users (
-    user_id BIGINT PRIMARY KEY,                   -- Unique user ID
+    user_id BIGINT PRIMARY KEY,                    -- Unique user ID
     age INTEGER CHECK(age > 0 AND age < 130),      -- Age constraint (optional safety)
     gender_id INTEGER NOT NULL,                    -- FK to genders table
     height FLOAT CHECK(height > 0),                -- Height must be positive

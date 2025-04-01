@@ -31,4 +31,4 @@ def execute_schema():
                     if command:  # Skip empty strings
                         cur.execute(command)
         conn.commit()
-        print("✅ Schema executed: all tables created (if not exist)")
+        print("Schema executed: all tables created (if not exist)")

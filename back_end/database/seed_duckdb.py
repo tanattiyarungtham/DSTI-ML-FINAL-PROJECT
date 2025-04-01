@@ -3,7 +3,7 @@ import os
 
 DB_PATH = os.getenv("DUCKDB_PATH", "fitness_ai.duckdb")
 
-# 🚀 Initial reference values
+# Initial reference values
 genders = ["male", "female", "other"]
 diet_types = ["vegetarian", "vegan", "keto", "none"]
 fitness_levels = ["beginner", "intermediate", "advanced"]
@@ -42,11 +42,11 @@ def seed_table(conn, table, values, col_name="label", id_column="id"):
 def run_seed():
     conn = duckdb.connect(DB_PATH)
 
-    # 👇 Ensure tables exist before seeding
+    # Ensure tables exist
     with open(os.path.join(os.path.dirname(__file__), "schema.sql"), "r") as f:
         conn.execute(f.read())
 
-    print("🔁 Seeding reference tables...")
+    print("Seeding reference tables...")
 
     seed_table(conn, "genders", genders)
     seed_table(conn, "diet_types", diet_types)
@@ -54,7 +54,7 @@ def run_seed():
     seed_table(conn, "goals", goals, id_column="goal_id")  # <- ICI
 
     conn.close()
-    print("✅ Seeding completed.")
+    print("Seeding completed.")
 
 if __name__ == "__main__":
     run_seed()
