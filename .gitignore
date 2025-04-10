@@ -24,6 +24,7 @@ __pycache__/
 # 📦 Environment & Secrets
 # ========================================
 env_folder/.env.postgre
+env_folder/.env.s3
 
 # ========================================
 # 📁 Dossiers générés automatiquement
@@ -31,7 +32,7 @@ env_folder/.env.postgre
 # ========================================
 tools/versions/
 tools/changes/
-Infrastructure/aws/s3_exports/
+Infrastructure/aws/s3/s3_exports/
 user_exports/
 
 # ========================================
