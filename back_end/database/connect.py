@@ -1,34 +1,70 @@
-import psycopg2
+# back_end/database/connect.py
+
 import os
+from dotenv import load_dotenv
+from sqlalchemy import create_engine, text
+from sqlalchemy.orm import sessionmaker, Session
+from pprint import pprint
 
-def get_connection():
-    """
-    Establishes a connection to a PostgreSQL database using environment variables.
 
-    Returns:
-    - psycopg2.connection: Active connection to the database
+class DatabaseConnector:
     """
-    return psycopg2.connect(
-        dbname=os.getenv("POSTGRES_DB"),
-        user=os.getenv("POSTGRES_USER"),
-        password=os.getenv("POSTGRES_PASSWORD"),
-        host=os.getenv("POSTGRES_HOST", "localhost"),
-        port=os.getenv("POSTGRES_PORT", 5432)
-    )
+    Handles PostgreSQL connection using SQLAlchemy and provides utilities
+    such as session management and schema execution.
+    """
 
-def execute_schema():
-    """
-    Reads and executes the schema.sql file to create necessary tables in the PostgreSQL database.
-    Supports multiple CREATE TABLE statements.
-    """
-    with get_connection() as conn:
-        with conn.cursor() as cur:
+    def __init__(self, dotenv_path: str = None):
+        # Load environment variables from .env.postgre file
+        load_dotenv(dotenv_path)
+        required_vars = ["POSTGRES_USER", "POSTGRES_PASSWORD", "POSTGRES_DB"]
+        missing = {var: os.getenv(var) for var in required_vars if not os.getenv(var)}
+        if missing:
+            pprint(missing)
+            raise ValueError("❌ Missing required environment variables.")
+        self.database_url = (
+            f"postgresql+psycopg2://{os.getenv('POSTGRES_USER')}:{os.getenv('POSTGRES_PASSWORD')}"
+            f"@{os.getenv('POSTGRES_HOST', 'localhost')}:{os.getenv('POSTGRES_PORT', 5432)}/{os.getenv('POSTGRES_DB')}"
+        )
+
+        # Create SQLAlchemy engine and session factory
+        self.engine = create_engine(self.database_url)
+        self.SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=self.engine)
+
+    def get_session(self) -> Session:
+        """
+        Provides a session object. Meant for use in script or FastAPI dependency injection.
+        """
+        return self.SessionLocal()
+
+    def get_db(self):
+        """
+        FastAPI-compatible generator dependency to yield a session.
+        Ensures proper cleanup with `finally: db.close()`.
+        """
+        db = self.get_session()
+        try:
+            yield db
+        finally:
+            db.close()
+
+    def execute_schema(self, schema_path: str = None):
+        """
+        Executes all SQL commands in the schema.sql file to bootstrap the DB.
+
+        Args:
+            schema_path (str): Optional path to a custom schema file.
+                               Defaults to `schema.sql` in the same folder.
+        """
+        if not schema_path:
             schema_path = os.path.join(os.path.dirname(__file__), "schema.sql")
+
+        # 🔥 begin() crée une transaction et la commit automatiquement à la fin
+        with self.engine.begin() as connection:
             with open(schema_path, "r") as f:
-                sql_commands = f.read().split(";")  # Split on semicolon
+                sql_commands = f.read().split(";")
                 for command in sql_commands:
                     command = command.strip()
-                    if command:  # Skip empty strings
-                        cur.execute(command)
-        conn.commit()
-        print("Schema executed: all tables created (if not exist)")
+                    if command:
+                        connection.execute(text(command))
+
+        print("✅ Schema executed: all tables created (if not exist).")

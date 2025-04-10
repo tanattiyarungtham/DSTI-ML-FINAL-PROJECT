@@ -23,8 +23,7 @@ __pycache__/
 # ========================================
 # 📦 Environment & Secrets
 # ========================================
-.env
-*.env
+env_folder/.env.postgre
 
 # ========================================
 # 📁 Dossiers générés automatiquement
@@ -32,7 +31,7 @@ __pycache__/
 # ========================================
 tools/versions/
 tools/changes/
-s3_exports/
+Infrastructure/aws/s3_exports/
 user_exports/
 
 # ========================================
@@ -48,3 +47,4 @@ data/images/
 # 📚 Notebooks personnels (facultatif)
 # ========================================
 best-practices/DataEngineering_Plan_FitnessAI.md
+best-practices/personnal

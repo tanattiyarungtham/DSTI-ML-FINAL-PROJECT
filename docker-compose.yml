@@ -1,0 +1,13 @@
+services:
+  postgres:
+    image: postgres:15
+    container_name: fitness-postgres
+    ports:
+      - "5432:5432"
+    env_file:
+      - env_folder/.env.postgre   # Uses your specific PostgreSQL environment file
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
+volumes:
+  pg_data:
