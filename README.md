@@ -10,6 +10,10 @@ To get started, install the required packages listed in requirements.txt and run
 
 The current version focuses entirely on direct text input. A chatbot interface will be implemented in the near future.
 
+Model Notebook:
+
+Fitness_Assistance_model.ipynb
+
 Libraries and tools used:
 
 - Transformers (Hugging Face)
