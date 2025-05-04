@@ -1,0 +1,71 @@
+Project Report: Intent Detection and advice generation for a Fitness Assistant Using NLP
+
+1. Overview
+
+This project focuses on building a natural language processing (NLP) model to support a fitness assistant application. The primary goal is to identify user intent from free-form text and route the input to the appropriate logic module. The system recognizes three types of intent: `Ask Advice`, `Store Log`, and `User Profile`.
+
+These intents correspond to three key user tasks:
+
+- Receiving personalized fitness or nutrition advice
+- Logging meals, workouts, or daily fitness activity
+- Computing caloric requirements and weight goals based on body metrics
+
+2. Dataset Construction**
+
+To develop a reliable intent classification system, a domain-specific labeled dataset was created by merging and curating three different intent datasets. Each sample was assigned one of the following categories:
+
+Ask Advice: General questions or guidance requests about fitness and wellness.
+Store Log: Entries indicating activity logging, such as “I ran 5km today.”
+User Profile: Statements involving user metrics or goals, such as height, weight, or a desire to lose/gain weight.
+
+After cleaning and labeling, the final dataset included approximately 2,500 examples, balanced across the three intent types to improve model robustness and generalization.
+
+3. Model Development**
+
+A BERT-based transformer model was fine-tuned for multi-class classification using the Hugging Face `Trainer` API.
+
+Model: `bert-base-uncased`
+Objective: Multi-class classification (3 intents)
+Metrics: Accuracy and weighted F1 Score
+
+The model showed high performance on the validation split, demonstrating its ability to correctly interpret diverse user queries in the fitness domain.
+
+4. Application Pipeline
+
+The trained intent model was integrated into a larger fitness assistant pipeline that consists of:
+
+Step 1: Input Handling
+
+User submits text input (e.g., “I want to lose 2 kg in 2 months.”)
+
+Step 2: Intent Classification
+
+The BERT model classifies the input as one of the three predefined intent types.
+
+Step 3: Routing Logic
+
+If `Ask Advice`: The query is passed to a pretrained text generation model (Llama 3.2) that outputs health advice.
+If `Store Log`: The entry is stored in a log system (planned for future development).
+If `User Profile`: The input is parsed, and a custom calorie calculator estimates BMR, TDEE, and recommended daily caloric intake.
+
+5. Tools and Libraries
+
+- Transformers (Hugging Face)
+- Datasets (Hugging Face)
+- Scikit-learn
+- Torch (PyTorch)
+- Pandas, NumPy
+- Regex for natural language parsing
+
+6. Data Sources
+
+A custom-curated CSV file: `intent_data_ad_log_pro.csv`
+Contains labeled text inputs for `advice`, `log`, and `profile` intents
+
+7. Conclusion
+
+This project successfully demonstrates the power of NLP in interpreting natural language for a fitness assistant by combining transfer learning with structured logic, the assistant can understand user goals and provide intelligent responses. Future development will include:
+
+- Chatbot integration
+- User profile logging and history
+- Integration with wearables and fitness APIs
