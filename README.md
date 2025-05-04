@@ -12,7 +12,7 @@ The current version focuses entirely on direct text input. A chatbot interface w
 
 Model Notebook:
 
-notebooks > Fitness_Assistance_model.ipynb
+notebooks / Fitness_Assistance_model.ipynb
 
 Libraries and tools used:
 
