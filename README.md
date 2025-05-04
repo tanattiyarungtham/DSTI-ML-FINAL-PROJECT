@@ -10,25 +10,23 @@ To get started, install the required packages listed in requirements.txt and run
 
 The current version focuses entirely on direct text input. A chatbot interface will be implemented in the near future.
 
-The report explains our process in detail, while this README gives an overview of the project's purpose and structure, and then guides the reader on how to run the code.
-
 Libraries and tools used:
 
-* Transformers (Hugging Face)
-* Datasets (Hugging Face)
-* Scikit-learn
-* Torch (PyTorch)
-* Pandas
-* NumPy
-* Regex (for input parsing)
+- Transformers (Hugging Face)
+- Datasets (Hugging Face)
+- Scikit-learn
+- Torch (PyTorch)
+- Pandas
+- NumPy
+- Regex (for input parsing)
 
 Model:
 
-* Soorya03/Llama-3.2-1B-Instruct-FitnessAssistant (for advice generation)
-* Fine-tuned BERT (for intent detection)
+- Soorya03/Llama-3.2-1B-Instruct-FitnessAssistant (for advice generation)
+- Fine-tuned BERT (for intent detection)
 
 Data source:
 
-* Custom-labeled intent dataset in CSV format named intent\_data\_ad\_log\_pro.csv
+- Custom-labeled intent dataset in CSV format named intent\_data\_ad\_log\_pro.csv
 
 This project combines natural language understanding with structured health advice and sets the foundation for a more interactive assistant in future development stages.
