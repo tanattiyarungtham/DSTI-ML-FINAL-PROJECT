@@ -15,6 +15,7 @@ filelock==3.18.0
 fonttools==4.56.0
 frozenlist==1.5.0
 fsspec==2024.12.0
+gradio==4.16.0
 huggingface-hub==0.29.3
 idna==3.10
 iniconfig==2.1.0
@@ -46,7 +47,9 @@ seaborn==0.13.2
 six==1.17.0
 SQLAlchemy==2.0.40
 threadpoolctl==3.6.0
+torch>=2.0
 tqdm==4.67.1
+transformers==4.39.3
 typing_extensions==4.13.0
 tzdata==2025.2
 urllib3==2.3.0
