@@ -1,5 +1,4 @@
 Project Report: Intent Detection and advice generation for a Fitness Assistant Using NLP
-Github link : https://github.com/tanattiyarungtham/DSTI-ML-FINAL-PROJECT
 
 1. Overview
 
