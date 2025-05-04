@@ -14,6 +14,11 @@ Model Notebook:
 
 notebooks / Fitness_Assistance_model.ipynb
 
+Important files:
+
+tools / Report.txt
+tools / requirements.txt
+
 Libraries and tools used:
 
 - Transformers (Hugging Face)
