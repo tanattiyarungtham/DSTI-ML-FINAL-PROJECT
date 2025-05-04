@@ -14,6 +14,11 @@ Model Notebook:
 
 notebooks / Fitness_Assistance_model.ipynb
 
+Datasets preprocessing:
+
+The datasets can be found in datasets folder. 
+To run the model notebook, download intent_data_ad_log_pro.csv.
+
 Important files:
 
 tools / Report.txt
